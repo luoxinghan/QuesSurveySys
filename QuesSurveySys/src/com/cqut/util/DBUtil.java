@@ -15,7 +15,7 @@ public class DBUtil {
 	public static Connection getConnection() {
 		
 		String driverName = "com.mysql.jdbc.Driver";
-		String url = "jdbc:mysql://localhost:3306/teacher_management";
+		String url = "jdbc:mysql://localhost:3306/ques_survey";
 		
 		String userName = "root";
 		String userPassword = "741067";

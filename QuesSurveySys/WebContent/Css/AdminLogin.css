@@ -1,0 +1,72 @@
+@CHARSET "UTF-8";
+*{
+	padding: 0;
+	border: 0;
+	margin: 0;
+}
+body{
+	font-family: "Microsoft YaHei";
+	background-color: #999999;
+}
+.loginArea{
+	margin: 150px auto;
+	width: 25%;
+	height: 280px;
+	background-color: #ffffff;
+	border-radius: 5%;
+}
+.validArea{
+	width: 80%;
+	margin: 0 auto;
+	padding-top: 1px;
+}
+.loginNav{
+	margin-top: 20px;
+	color: #999999;
+	font-family: Constantia;
+	width: 100%;
+	height: 30px;
+	font-size: 20px;
+	border-bottom: 1px solid #999999;
+}
+.loginText{
+	color: #555555;
+	margin-top: 20px;
+}
+.userName{
+	margin-top: 10px;
+	height: 30px;
+	width: 100%;
+	border: 1px solid #999999;
+	border-radius: 3px;
+	margin-bottom: 10px;
+}
+.passWord{
+	margin-top: 10px;
+	height: 30px;
+	width: 100%;
+	border: 1px solid #999999;
+	border-radius: 3px;
+	margin-bottom: 10px;
+}
+.BT{
+	height: 35px;
+	color: white;
+	font-weight: bold;
+	border: 1px solid #999999;
+	border-radius: 5px;
+}
+.loginBT{
+	width: 25%;
+	float: right;
+	margin-top: 15px;
+	border-radius: 5%;
+	background-color: #BDD9FC;
+}
+.reback{
+	width: 25%;
+	float: left;
+	margin-top: 15px;
+	border-radius: 5%;
+	background-color: #999;
+}
