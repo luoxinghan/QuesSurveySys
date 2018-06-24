@@ -21,7 +21,7 @@ public class UserDao {
 	}
 	
 	public ArrayList<User> getAdmin(){
-		String sql = "SELECT * from user WHERE user.is_delete = 0 AND user.user_type = 1;";
+		String sql = "SELECT * from user WHERE user.is_delete = 0 AND user.user_type = 1 AND user.is_delete = 0;";
 		ArrayList<User> adminList = new ArrayList<User>();
 		Connection connection = DBUtil.getConnection();
 		try{

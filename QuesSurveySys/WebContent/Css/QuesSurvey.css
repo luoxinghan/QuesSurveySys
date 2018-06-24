@@ -37,5 +37,67 @@ body{
 	color: white;
 	font-size: 30px;
 	margin-top: 25px;
-	margin-left: 1%;
+	margin-left: 5%;
+}
+.mid{
+	width: 100%;
+	height: 614px;
+	background-color: #F5F5DC;
+	padding-top: 1px;
+}
+.operations{
+	width: 90%;
+	height: 600px;
+	margin: 0 auto;
+	padding-top: 1px;
+}
+.BT{
+	width: 8%;
+	height: 35px;
+	color: white;
+	font-weight: bold;
+	border: 1px solid #999999;
+	border-radius: 5px;
+}
+.buttonArea{
+	margin-top: 10px;
+}
+.addBT{
+	background-color: #BDD9FC;
+}
+.addBT:hover{
+	background-color: whitesmoke;
+	color: #BDD9FC;
+}
+.delBT{
+	margin-left: 2%;
+	background-color: #CD5C5C;
+}
+.delBT:hover{
+	background-color: whitesmoke;
+	color: #CD5C5C;
+}
+.tableArea{
+	width: 100%;
+	margin-top: 10px;
+}
+.thTr{
+	border: 1px solid #999999;
+}
+.qsnTable{
+	width: 100%;
+	background-color: whitesmoke;
+	text-align: center;
+	border-collapse:collapse;
+}
+.qsnTable tr{
+	height: 40px;
+	color: #555;
+}
+.pointer{
+	color: #777777;
+	cursor: pointer;
+}
+.pointer:hover{
+	color: #CD5C5C;
 }

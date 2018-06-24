@@ -1,17 +1,18 @@
-/**
- * 
- */
 package com.cqut.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 
 /**
  * @author lxh
  *
  */
 public class StringUtil {
+	
+	private static Random random = new Random();
+	private static final int DEFAULT_MAX_NUM = 100;
 	
 	/**
 	 * 将java.util.Date转换为java.sql.Date
@@ -59,5 +60,13 @@ public class StringUtil {
 		SimpleDateFormat format0 = new SimpleDateFormat("yyyy-MM-dd");
         String time = format0.format(date.getTime());
         return time;
+	}
+	
+	/**
+	 * 生成当前纳秒值的字符串
+	 * */
+	public static String createTimestamp() {
+	    return String.valueOf(System.nanoTime())
+	    		.concat(String.valueOf(random.nextInt(DEFAULT_MAX_NUM)));
 	}
 }
