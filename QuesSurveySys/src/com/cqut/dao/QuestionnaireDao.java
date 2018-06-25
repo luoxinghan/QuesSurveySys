@@ -23,7 +23,7 @@ public class QuestionnaireDao {
 	public ArrayList<Questionnaire> getQuestionnaire() {
 		String sql = "SELECT q.id, q.qsn_name, q.qsn_describe, u.user_name, "
 				+ "q.end_time,q.create_time,q.is_delete,q.remark FROM (questionnaire q, `user` u) "
-				+ "WHERE q.author = u.id q.is_delete = 0;";
+				+ "WHERE q.author = u.id AND q.is_delete = 0;";
 		ArrayList<Questionnaire> qsnList = new ArrayList<Questionnaire>();
 		Connection connection = DBUtil.getConnection();
 		try {
@@ -46,6 +46,37 @@ public class QuestionnaireDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return qsnList;
+		} finally {
+			DBUtil.close(connection);
+		}
+	}
+	
+	public Questionnaire getAQuestionnaire(Questionnaire questionnaire) {
+		String sql = "SELECT q.id, q.qsn_name, q.qsn_describe, u.user_name, "
+				+ "q.end_time,q.create_time,q.is_delete,q.remark FROM (questionnaire q, `user` u) "
+				+ "WHERE q.author = u.id AND q.is_delete = 0 AND q.id = '"+ questionnaire.getId() + "';";
+		ArrayList<Questionnaire> qsnList = new ArrayList<Questionnaire>();
+		Connection connection = DBUtil.getConnection();
+		try {
+			PreparedStatement pstm = connection.prepareStatement(sql);
+			ResultSet rs = pstm.executeQuery();
+			while (rs.next()) {
+				String id = rs.getString(1);
+				String qsnName = rs.getString(2);
+				String qsnDescribe = rs.getString(3);
+				String author = rs.getString(4);
+				Date endTime = rs.getDate(5);
+				Date createTime = rs.getDate(6);
+				Byte isDelete = rs.getByte(7);
+				String remark = rs.getString(8);
+				Questionnaire user = new Questionnaire(id, qsnName, qsnDescribe, author, endTime, createTime, isDelete,
+						remark);
+				qsnList.add(user);
+			}
+			return qsnList.get(0);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return qsnList.get(0);
 		} finally {
 			DBUtil.close(connection);
 		}

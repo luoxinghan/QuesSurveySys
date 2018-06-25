@@ -8,6 +8,7 @@ import java.util.Date;
 
 import com.cqut.dto.User;
 import com.cqut.util.DBUtil;
+import com.cqut.util.StringUtil;
 
 public class UserDao {
 	
@@ -42,6 +43,54 @@ public class UserDao {
 		} catch(Exception e) {
 			e.printStackTrace();
 			return adminList;
+		} finally {
+			DBUtil.close(connection);
+		}
+	}
+	
+	public boolean addAUser(User user){
+		String sql = "INSERT into user(id , user_name, password, user_type, create_time, is_delete, remark) VALUES(?,?,?,?,?,?,?)";
+		if(this.isUserExist(user.getId()) == true){
+			return false;
+		}
+		Connection connection = DBUtil.getConnection();
+		try{
+			PreparedStatement pstm = connection.prepareStatement(sql);
+			pstm.setString(1, StringUtil.createTimestamp());
+			pstm.setString(2, user.getUserName());
+			pstm.setString(3, user.getPassword());
+			pstm.setByte(4, user.getUserType());
+			pstm.setDate(5, StringUtil.changeToSqlDate(new Date()));
+			pstm.setByte(6, user.getIdDelete());
+			pstm.setString(7, user.getRemark());
+			pstm.executeUpdate();
+			return true;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			DBUtil.close(connection);
+		}
+	}
+	
+	public boolean isUserExist(String id) {
+		String sql = "SELECT * FROM user WHERE id = '" + id +"';";
+		Connection connection = DBUtil.getConnection();
+		try {
+			PreparedStatement pstm = connection.prepareStatement(sql);
+			ResultSet rs = pstm.executeQuery();
+			int count = 0;
+			while(rs.next()){
+				count++;
+			}
+			if(count != 0){
+				return true;
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
 		} finally {
 			DBUtil.close(connection);
 		}

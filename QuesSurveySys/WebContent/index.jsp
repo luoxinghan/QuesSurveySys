@@ -2,6 +2,8 @@
 	import="com.cqut.dto.Questionnaire" import="java.net.*"
 	contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
+	String path = request.getContextPath();
+	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 	InetAddress address = InetAddress.getLocalHost();
 	String hostAddress = address.getHostAddress();
 	
@@ -48,7 +50,7 @@
 						<td><%=qsnList.get(i).getAuthor() %></td>
 						<td>
 							<!-- <a onclick="viewTeacher(this)"><span class="fa fa-eye fa-lg pointer"></span></a>&nbsp;&nbsp;&nbsp;&nbsp; -->
-							<a onclick="updateTeacher(this)"><span class='fa fa-pencil fa-lg pointer'></span></a><!-- &nbsp;&nbsp;&nbsp;&nbsp; -->
+							<a href="<%=path %>/QsnSurvey?id=<%=qsnList.get(i).getId() %>" ><span class='fa fa-pencil fa-lg pointer'></span></a><!-- &nbsp;&nbsp;&nbsp;&nbsp; -->
 							<!-- <a onclick="deleteTeacher(this)"><span class='fa fa-trash fa-lg pointer'></span></a> -->
 						</td>
 					</tr>
