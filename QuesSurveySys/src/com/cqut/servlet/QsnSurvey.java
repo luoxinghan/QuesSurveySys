@@ -8,6 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.cqut.dao.QuestionDao;
+import com.cqut.dao.QuestionnaireDao;
+import com.cqut.dto.Questionnaire;
+
 /**
  * Servlet implementation class QsnSurvey
  */
@@ -42,6 +46,11 @@ public class QsnSurvey extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String qsnId = request.getParameter("id");
+		Questionnaire questionnaire = new Questionnaire();
+		questionnaire.setId(qsnId);
+		questionnaire = QuestionnaireDao.getQuestionnaireDao().getAQuestionnaire(questionnaire);
+		questionnaire.setQuestions(QuestionDao.getQuestionDao().getQuestionsByQsnId(qsnId));
+		request.setAttribute("qsn", questionnaire);
 		request.getRequestDispatcher("./survey.jsp").forward(request, response);
 	}
 

@@ -1,5 +1,6 @@
 package com.cqut.dto;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Questionnaire {
@@ -19,6 +20,8 @@ public class Questionnaire {
 	private Byte isDelete;
 	
 	private String remark;
+	
+	private ArrayList<Question> questions;
 
 	public String getId() {
 		return id;
@@ -82,6 +85,14 @@ public class Questionnaire {
 
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+
+	public ArrayList<Question> getQuestions() {
+		return questions;
+	}
+
+	public void setQuestions(ArrayList<Question> questions) {
+		this.questions = questions;
 	}
 
 	public Questionnaire() {
