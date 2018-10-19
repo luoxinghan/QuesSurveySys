@@ -16,7 +16,7 @@
 	alert("用户名或密码错误!");
 </script>
 <%
-		}
+	}
 	}
 %>
 </head>
@@ -28,9 +28,10 @@
 			</div>
 			<div class="loginText">
 				<form action="AdminLogin" method="post">
-					用户名<br /> <input id="userName" class="userName" type="text"
+					用户名<br /> 
+					<input id="userName" class="userName" type="text"
 						name="userName" /><br /> 密码<br /> <input id="passWord"
-						class="passWord" type="text" name="passWord" /><br />
+						class="passWord" type="password" name="passWord" /><br />
 					<button class="reback BT"
 						onclick="window.location.href='./index.jsp';return false;">返回主页</button>
 					<input class="loginBT BT" type="submit" value="登录">

@@ -1,8 +1,6 @@
 package com.cqut.servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,20 +9,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.cqut.dao.UserDao;
-import com.cqut.dto.User;
-
 /**
- * Servlet implementation class AdminLogin
+ * Servlet implementation class ExitLogin
  */
-@WebServlet("/AdminLogin")
-public class AdminLogin extends HttpServlet {
+@WebServlet("/ExitLogin")
+public class ExitLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminLogin() {
+    public ExitLogin() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -47,27 +42,9 @@ public class AdminLogin extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		String userName = request.getParameter("userName");
-		String passWord = request.getParameter("passWord");
-		int flag = 0;
-		ArrayList<User> adminList = UserDao.getUserDao().getAdmin();
-		for(int i = 0; i < adminList.size(); i++) {
-			if (userName.equals(adminList.get(i).getUserName())
-					&& passWord.equals(adminList.get(i).getPassword())) {
-				flag = 1;
-				break;
-			}
-		}
-		if(flag == 1) {
-			HttpSession httpSession = request.getSession();
-			httpSession.setAttribute("userName", userName);
-			response.sendRedirect("SurveyManage");
-			/*response.sendRedirect("./quesManage.jsp");*/
-		} else {
-			request.setAttribute("warning", "noUserName");
-			request.getRequestDispatcher("./adminLogin.jsp").forward(request, response);
-		}
+		HttpSession ht = request.getSession(true);
+		ht.removeAttribute("userName");
+		request.getRequestDispatcher("./adminLogin.jsp").forward(request, response);
 	}
 
 	/**

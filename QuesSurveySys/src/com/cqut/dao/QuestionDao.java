@@ -22,7 +22,7 @@ public class QuestionDao {
 	
 	public ArrayList<Question> getQuestionsByQsnId(String QsnId){
 		String sql = "SELECT q.id, q.question_name, q.question_type, q.question_no, q.is_required, q.create_time, q.remark "
-				+ "FROM question q, qsn_question qq where q.id = qq.question_id AND qq.qsn_id = '" + QsnId + "';";
+				+ "FROM question q, qsn_question qq where q.id = qq.question_id AND qq.qsn_id = '" + QsnId + "' GROUP BY q.question_no;";
 		ArrayList<Question> questionList = new ArrayList<Question>();
 		Connection connection = DBUtil.getConnection();
 		try{

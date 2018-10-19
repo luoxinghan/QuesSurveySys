@@ -56,12 +56,12 @@ public class UserDao {
 		Connection connection = DBUtil.getConnection();
 		try{
 			PreparedStatement pstm = connection.prepareStatement(sql);
-			pstm.setString(1, StringUtil.createTimestamp());
+			pstm.setString(1, user.getId());
 			pstm.setString(2, user.getUserName());
 			pstm.setString(3, user.getPassword());
 			pstm.setByte(4, user.getUserType());
 			pstm.setDate(5, StringUtil.changeToSqlDate(new Date()));
-			pstm.setByte(6, user.getIdDelete());
+			pstm.setByte(6, user.getIsDelete());
 			pstm.setString(7, user.getRemark());
 			pstm.executeUpdate();
 			return true;
@@ -75,6 +75,29 @@ public class UserDao {
 	
 	public boolean isUserExist(String id) {
 		String sql = "SELECT * FROM user WHERE id = '" + id +"';";
+		Connection connection = DBUtil.getConnection();
+		try {
+			PreparedStatement pstm = connection.prepareStatement(sql);
+			ResultSet rs = pstm.executeQuery();
+			int count = 0;
+			while(rs.next()){
+				count++;
+			}
+			if(count != 0){
+				return true;
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			DBUtil.close(connection);
+		}
+	}
+	
+	public boolean isUserExistUserName(String userName, String qsnId) {
+		String sql = "SELECT * FROM user_survey WHERE user_id = (SELECT `user`.id FROM user WHERE user_name = '" + userName + "') AND qsn_id = '" + qsnId + "';";
 		Connection connection = DBUtil.getConnection();
 		try {
 			PreparedStatement pstm = connection.prepareStatement(sql);

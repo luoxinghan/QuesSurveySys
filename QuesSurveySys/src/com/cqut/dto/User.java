@@ -58,12 +58,12 @@ public class User {
 		this.createTime = createTime;
 	}
 
-	public Byte getIdDelete() {
+	public Byte getIsDelete() {
 		return isDelete;
 	}
 
-	public void setIdDelete(Byte idDelete) {
-		this.isDelete = idDelete;
+	public void setIsDelete(Byte isDelete) {
+		this.isDelete = isDelete;
 	}
 
 	public String getRemark() {

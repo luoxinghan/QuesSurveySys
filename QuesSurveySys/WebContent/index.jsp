@@ -8,6 +8,7 @@
 	String hostAddress = address.getHostAddress();
 	
 	ArrayList<Questionnaire> qsnList = QuestionnaireDao.getQuestionnaireDao().getQuestionnaire();
+	/* ArrayList<Questionnaire> qsnList = new ArrayList<Questionnaire>(); */
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -19,8 +20,8 @@
 </head>
 <body>
 	<div class="loginNav">
-		<a class="curUser">当前用户 <%=hostAddress%></a> <a
-			href="./adminLogin.jsp" class="adLogin">管理员登录</a>
+		<a class="curUser">当前用户 <%=hostAddress%></a> 
+		<a href="LoginCheck" class="adLogin">管理员登录</a>
 	</div>
 	<div class="nav">
 		<p class="navTitle">问卷调查系统</p>
@@ -28,7 +29,7 @@
 	<div class="mid">
 		<div class="operations">
 			<div class="buttonArea">
-				<button onclick="addTeacher()" class="addBT BT">新增</button>
+				<button onclick="addTeacher()" style="display: none;" class="addBT BT">新增</button>
 				<button class="delBT BT" style="display: none;">删除</button>
 			</div>
 			<div class="tableArea">
